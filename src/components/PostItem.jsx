@@ -24,16 +24,15 @@ const PostItem = ({ post, index, remove, editPostTitle, editPostContent}) => {
             contentEditable={true}
             onBlur={
               (e) => {
-                console.log(e.target.textContent)
                 editPostContent(e.target.textContent, index)
-                const biba = e.target.textContent.split(' ').map((word) => {
+                const spanTag = e.target.textContent.split(' ').map((word) => {
                 if(word[0] === '#'){
                   return `<span class='post__span__tag'>${word}</span>`
                 }
                 return word
                 }).join(' ')
                 e.target.textContent = ''
-                e.target.innerHTML = biba
+                e.target.innerHTML = spanTag
                 e.target.className = 'post__text'
             }}
             onFocus={(e) => {
