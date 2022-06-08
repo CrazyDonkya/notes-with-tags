@@ -23,9 +23,17 @@
     margin-top: 5px;
 }
 
+.post__redact__text {
+    .post__span__tag {
+        background-color: lightblue;
+    }
+}
+
 .post__tag {
     background-color: lightblue;
+    margin-left: 5px;
 }
+
 
 .post__button {
     background-color: $second-color;

@@ -22,12 +22,28 @@ const PostItem = ({ post, index, remove, editPostTitle, editPostContent}) => {
             className='post__text' 
             suppressContentEditableWarning={true} 
             contentEditable={true}
-            onBlur={(e) => {editPostContent(e.target.textContent, index)}}
+            onBlur={
+              (e) => {
+                console.log(e.target.textContent)
+                editPostContent(e.target.textContent, index)
+                const biba = e.target.textContent.split(' ').map((word) => {
+                if(word[0] === '#'){
+                  return `<span class='post__span__tag'>${word}</span>`
+                }
+                return word
+                }).join(' ')
+                e.target.textContent = ''
+                e.target.innerHTML = biba
+                e.target.className = 'post__text'
+            }}
+            onFocus={(e) => {
+              e.target.className = 'post__redact__text'
+            }}
           >
-            {post.content}
+          {post.content}
           </div>
           <PostTags 
-            tags={post.content.split(' ').filter(word => word[0] === '#')} 
+             tags={post.content.split(' ').filter(word => word[0] === '#' && word.length > 1)} 
           />
         </div>
         <div className='post__form'>

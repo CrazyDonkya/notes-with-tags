@@ -15,12 +15,12 @@ function App() {
     setPosts(posts.filter(p => p.id !== post.id))
   }
 
-  const sortedPosts = useMemo(() => {
-    const buba = [...posts]
+  const sortPosts = useMemo(() => {
+    const sortedPosts = [...posts]
     if (searchQuery[0] === '#') {
-      return buba.filter(post => post.content.includes(searchQuery))
+      return sortedPosts.filter(post => post.content.includes(searchQuery))
     }
-    return buba
+    return sortedPosts
   }, [searchQuery, posts,])
 
 
@@ -28,7 +28,7 @@ function App() {
     <div className="App">
       <button className='post__button' onClick = {createPost}>Создать</button>
       <input className='post__input'  onChange={(e) => {setSearchQuery(e.target.value)}}></input>
-      <PostList  remove = {removePost} posts = {sortedPosts} setPosts = {setPosts} />
+      <PostList  remove = {removePost} posts = {sortPosts} setPosts = {setPosts} />
     </div>
   )
 }
